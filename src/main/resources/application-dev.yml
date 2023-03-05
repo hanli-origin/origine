@@ -20,10 +20,10 @@ mybatis-plus:
 spring:
   # 数据库配置(务必根据实际情况修改配置)
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/crm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.52.3:3306/crm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
-    password: 00000000
+    password: "00000000"
     # 设置连接池为Druid
     type: com.alibaba.druid.pool.DruidDataSource
     # 数据源的其他配置
@@ -50,8 +50,9 @@ spring:
     content-type: text/html
     charset: UTF-8
     template-loader-path: classpath:/views/
-
-  ## 启用热部署
+    settings:
+      classic_compatible: true
+    ## 启用热部署
   devtools:
     restart:
       enabled: true
