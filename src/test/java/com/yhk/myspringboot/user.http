@@ -1,0 +1,7 @@
+POST {{host}}/crm/user/login
+Content-Type: application/json
+
+{
+  "userName": "aaa",
+  "userPassword": "aaaaa"
+}

@@ -1,11 +1,10 @@
 package com.yhk.myspringboot.crm.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.yhk.myspringboot.base.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.yhk.myspringboot.base.BaseController;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author: yhk
@@ -18,7 +17,6 @@ public class IndexController extends BaseController {
     // 系统登录页
     @GetMapping("index")
     public String index(HttpServletRequest request) {
-        System.out.println("ctx____" + request.getAttribute("ctx"));
         return "index";
     }
 

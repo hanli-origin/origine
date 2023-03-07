@@ -2,6 +2,7 @@ package com.yhk.myspringboot.crm.mapper;
 
 import com.yhk.myspringboot.crm.pojo.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>

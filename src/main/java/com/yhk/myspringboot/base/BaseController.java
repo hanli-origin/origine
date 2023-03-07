@@ -11,18 +11,18 @@ public class BaseController {
         request.setAttribute("ctx", request.getContextPath());
     }
 
-    public ResultInfo success() {
-        return new ResultInfo();
+    public <T> ResultInfo<T> success() {
+        return new ResultInfo<T>();
     }
 
-    public ResultInfo success(String msg) {
-        ResultInfo resultInfo = new ResultInfo();
+    public <T> ResultInfo<T> success(String msg) {
+        ResultInfo<T> resultInfo = new ResultInfo<>();
         resultInfo.setMsg(msg);
         return resultInfo;
     }
 
-    public ResultInfo success(String msg, Object result) {
-        ResultInfo resultInfo = new ResultInfo();
+    public <T> ResultInfo<T>success(String msg, T result) {
+        ResultInfo<T> resultInfo = new ResultInfo<>();
         resultInfo.setMsg(msg);
         resultInfo.setResult(result);
         return resultInfo;
