@@ -2,6 +2,6 @@ POST {{host}}/crm/user/login
 Content-Type: application/json
 
 {
-  "userName": "aaa",
-  "userPassword": "aaaaa"
+  "userName": "admin",
+  "userPassword": "00000000"
 }
