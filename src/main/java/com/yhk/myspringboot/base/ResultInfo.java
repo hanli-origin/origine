@@ -1,16 +1,16 @@
 package com.yhk.myspringboot.base;
 
-public class ResultInfo {
+public class ResultInfo <T>{
     private Integer code = 200;
     private String msg = "success";
 
-    private Object result;
+    private T result;
 
-    public Object getResult() {
+    public T getResult() {
         return result;
     }
 
-    public void setResult(Object result) {
+    public void setResult(T result) {
         this.result = result;
     }
 
