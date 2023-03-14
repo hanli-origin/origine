@@ -32,8 +32,6 @@ public class UserController {
         if (!ObjectUtils.isEmpty(user)) {
             System.out.println("name" + user.getUserName());
         }
-        ResultInfo<User> resultInfo = userService.getUserByName(user);
-        resultInfo.setResult(user);
-        return resultInfo;
+        return userService.getUserByName(user);
     }
 }
