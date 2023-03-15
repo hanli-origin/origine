@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yhk.myspringboot.crm.mapper.UserMapper;
 import com.yhk.myspringboot.crm.pojo.User;
+import com.yhk.myspringboot.crm.pojo.UserModel;
 import com.yhk.myspringboot.crm.service.IUserService;
 import com.yhk.myspringboot.crm.utils.AssertUtil;
 import com.yhk.myspringboot.crm.utils.Md5Util;
+import com.yhk.myspringboot.crm.utils.UserIDBase64;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -25,18 +27,27 @@ import java.util.Optional;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Override
-    public User login(User user) {
-        //输入用户信息判空
+    public UserModel login(User user) {
+        // 输入用户信息判空
         checkLogin(user);
-        //查询结果判空
+        // 查询结果判空
         User userInfo = getUserByName(user);
         AssertUtil.isTrue(!Optional.ofNullable(userInfo).isPresent(), "用户不存在");
         assert userInfo != null;
         // 密码校验
         boolean result = checkPwd(user.getUserPassword(), userInfo.getUserPassword());
         AssertUtil.isTrue(!result, "密码错误，登录失败");
-        userInfo.setUserPassword("******");
-        return userInfo;
+        return buildUserModel(userInfo);
+    }
+
+    private UserModel buildUserModel(User user) {
+        UserModel userModel = new UserModel();
+        String userID = UserIDBase64.encoderUserID(user.getId());
+        userModel.setUserID(userID);
+        userModel.setUserName(user.getUserName());
+        userModel.setTrueName(user.getTrueName());
+        userModel.setUserPassword("******");
+        return userModel;
     }
 
     private void checkLogin(User user) {
@@ -58,7 +69,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User getUserByName(User user) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        //wrapper.setEntity(user);
         wrapper.eq("user_name", user.getUserName());
         return getOne(wrapper);
     }

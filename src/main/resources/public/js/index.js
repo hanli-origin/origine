@@ -36,7 +36,7 @@ layui.use(['form', 'jquery', 'jquery_cookie'], function () {
                         shade: [0.6, '#000', true],
                     }, function () {
                         var result = data.result;
-                        $.cookie("userId", result.userId);
+                        $.cookie("userID", result.userID);
                         $.cookie("userName", result.userName);
                         $.cookie("trueName", result.trueName);
                         // 如果点击记住我 设置cookie 过期时间7天
