@@ -1,10 +1,11 @@
 package com.yhk.myspringboot.crm.controller;
 
 
+import com.yhk.myspringboot.base.BaseController;
 import com.yhk.myspringboot.base.ResultInfo;
+import com.yhk.myspringboot.crm.exceptions.ParamsException;
 import com.yhk.myspringboot.crm.pojo.User;
 import com.yhk.myspringboot.crm.service.IUserService;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
 
     private final IUserService userService;
 
@@ -28,10 +29,14 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public ResultInfo<User> login(@RequestBody User user) {
-
-        if (!ObjectUtils.isEmpty(user)) {
-            System.out.println("name" + user.getUserName());
+        ResultInfo<User> resultInfo;
+        try {
+            resultInfo = success("登录成功", userService.login(user));
+        } catch (ParamsException p) {
+            resultInfo = fail(p.getMsg(), user);
+        } catch (Exception e) {
+            resultInfo = fail(e.getMessage(), user);
         }
-        return userService.getUserByName(user);
+        return resultInfo;
     }
 }

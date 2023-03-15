@@ -1,8 +1,8 @@
 package com.yhk.myspringboot.base;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class BaseController {
 
@@ -21,11 +21,18 @@ public class BaseController {
         return resultInfo;
     }
 
-    public <T> ResultInfo<T>success(String msg, T result) {
+    public <T> ResultInfo<T> success(String msg, T result) {
         ResultInfo<T> resultInfo = new ResultInfo<>();
         resultInfo.setMsg(msg);
         resultInfo.setResult(result);
         return resultInfo;
     }
 
+    public <T> ResultInfo<T> fail(String msg, T result) {
+        ResultInfo<T> resultInfo = new ResultInfo<>();
+        resultInfo.setMsg(msg);
+        resultInfo.setResult(result);
+        resultInfo.setCode(500);
+        return resultInfo;
+    }
 }

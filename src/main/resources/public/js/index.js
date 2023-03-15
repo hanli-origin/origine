@@ -23,8 +23,9 @@ layui.use(['form', 'jquery', 'jquery_cookie'], function () {
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify({
                 "userName": data.username,
-                "userPassword": data.userPassword
+                "userPassword": data.password
             }),
+
             dataType: "json",
             success: function (data) {
                 layer.close(index);
