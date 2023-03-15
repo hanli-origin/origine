@@ -42,7 +42,7 @@ layui.use(['form', 'jquery', 'jquery_cookie'], function () {
                         // 如果点击记住我 设置cookie 过期时间7天
                         if ($("input[type='checkbox']").is(':checked')) {
                             // 写入cookie 7天
-                            $.cookie("userId", result.userId, {expires: 7});
+                            $.cookie("userID", result.userID, {expires: 7});
                             $.cookie("userName", result.userName, {expires: 7});
                             $.cookie("trueName", result.trueName, {expires: 7});
                         }
