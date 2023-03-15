@@ -1,8 +1,7 @@
 package com.yhk.myspringboot.crm.utils;
 
-import org.apache.commons.lang3.StringUtils;
-
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 /**
  * 在Cookie中获取用户id工具类
@@ -17,10 +16,11 @@ public class LoginUserUtil {
      */
     public static int releaseUserIdFromCookie(HttpServletRequest request) {
         String userIdString = CookieUtil.getCookieValue(request, "userID");
-        if (StringUtils.isBlank(userIdString)) {
+        Optional<String> op = Optional.ofNullable(userIdString);
+        if (!op.isPresent()) {
             return 0;
         }
-        Integer userId = UserIDBase64.decoderUserID(userIdString);
-        return userId;
+        Optional<Integer> userID = Optional.ofNullable(UserIDBase64.decoderUserID(op.get()));
+        return userID.orElse(0);
     }
 }

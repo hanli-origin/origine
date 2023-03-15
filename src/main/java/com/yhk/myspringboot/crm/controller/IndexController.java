@@ -11,9 +11,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author: yhk
- * @since: 2023/3/4 18:54
- * @description:
+ * @author yhk
+ * @since 2023/3/4 18:54
  */
 @Controller
 public class IndexController extends BaseController {
