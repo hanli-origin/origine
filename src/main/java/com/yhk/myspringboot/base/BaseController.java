@@ -35,4 +35,11 @@ public class BaseController {
         resultInfo.setCode(500);
         return resultInfo;
     }
+
+    public <T> ResultInfo<T> fail(String msg, Integer code) {
+        ResultInfo<T> resultInfo = new ResultInfo<>();
+        resultInfo.setMsg(msg);
+        resultInfo.setCode(code);
+        return resultInfo;
+    }
 }

@@ -7,7 +7,10 @@ import com.yhk.myspringboot.crm.exceptions.ParamsException;
 import com.yhk.myspringboot.crm.pojo.User;
 import com.yhk.myspringboot.crm.pojo.UserModel;
 import com.yhk.myspringboot.crm.service.IUserService;
+import com.yhk.myspringboot.crm.utils.LoginUserUtil;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -39,5 +42,20 @@ public class UserController extends BaseController {
             resultInfo = fail(e.getMessage(), new UserModel(user));
         }
         return resultInfo;
+    }
+
+    @PostMapping("/updatePassword")
+    @ResponseBody
+    public ResultInfo<String> updatePwd(HttpServletRequest request, String originPwd, String newPwd, String repeatPwd) {
+        try {
+            int userId = LoginUserUtil.releaseUserIdFromCookie(request);
+            userService.updatePassword(userId, originPwd, newPwd, repeatPwd);
+            return success("密码修改成功");
+
+        } catch (ParamsException p) {
+            return fail(p.getMsg(), p.getCode());
+        } catch (Exception e) {
+            return fail(e.getMessage(), 500);
+        }
     }
 }

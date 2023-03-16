@@ -73,4 +73,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         wrapper.eq("user_name", user.getUserName());
         return getOne(wrapper);
     }
+
+    @Override
+    public void updatePassword(int userId, String originPwd, String newPwd, String repeatPwd) {
+        User origin = getById(userId);
+        AssertUtil.isTrue(!Optional.ofNullable(origin).isPresent(), "用户不存在");
+        assert origin != null;
+        checkPwdParam(origin.getUserPassword(), originPwd, newPwd, repeatPwd);
+        User user = new User();
+        user.setId(userId);
+        user.setUserPassword(Md5Util.encode(newPwd));
+        baseMapper.updateById(user);
+    }
+
+    private void checkPwdParam(String realPwd, String originPwd, String newPwd, String repeatPwd) {
+        AssertUtil.isTrue(StringUtils.isBlank(originPwd) || StringUtils.isBlank(newPwd) || StringUtils.isBlank(repeatPwd)
+                , "旧/新/确认密码不能为空");
+        AssertUtil.isTrue(!StringUtils.equals(realPwd, Md5Util.encode(originPwd)), "密码错误，修改失败");
+        AssertUtil.isTrue(StringUtils.equals(originPwd, newPwd), "新密码不能与旧密码相同");
+        AssertUtil.isTrue(!StringUtils.equals(newPwd, repeatPwd), "新密码要与确认密码相同");
+    }
 }

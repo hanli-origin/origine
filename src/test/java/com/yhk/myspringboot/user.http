@@ -5,3 +5,10 @@ Content-Type: application/json
   "userName": "admin",
   "userPassword": "000000"
 }
+
+###
+POST {{host}}/crm/user/updatePassword
+Content-Type: application/x-www-form-urlencoded
+cookie:userID=%23ATM1kDO%23%23wMwUTMxMzN1kDO3YTM&userName=admin
+
+originPwd=000000&newPwd=123123&repeatPwd=123123
