@@ -1,14 +1,14 @@
 package com.yhk.myspringboot.base;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 public class BaseController {
 
     @ModelAttribute
     public void preHandler(HttpServletRequest request) {
-        request.setAttribute("ctx", request.getContextPath());
+        request.getSession().setAttribute("ctx", request.getContextPath());
     }
 
     public <T> ResultInfo<T> success() {

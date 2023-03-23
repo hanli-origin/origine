@@ -1,5 +1,12 @@
 package com.yhk.myspringboot.crm.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yhk.myspringboot.base.BaseController;
 import com.yhk.myspringboot.base.ResultInfo;
@@ -8,9 +15,6 @@ import com.yhk.myspringboot.crm.pojo.User;
 import com.yhk.myspringboot.crm.pojo.UserModel;
 import com.yhk.myspringboot.crm.service.IUserService;
 import com.yhk.myspringboot.crm.utils.LoginUserUtil;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -20,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author yhk
  * @since 2023-03-05
  */
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController extends BaseController {
 
@@ -57,5 +61,10 @@ public class UserController extends BaseController {
         } catch (Exception e) {
             return fail(e.getMessage(), 500);
         }
+    }
+
+    @RequestMapping("/toPasswordPage")
+    public String toPasswordPage() {
+        return "/user/password";
     }
 }

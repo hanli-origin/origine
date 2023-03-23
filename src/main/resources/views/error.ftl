@@ -11,17 +11,17 @@
 
 <div class="stars">
     <div class="central-body">
-        <img class="image-404" src="/images/404/404.svg" width="300px">
+        <img class="image-404" src="${ctx}/images/404/404.svg" width="300px">
         <a href="/" class="btn-go-home">返回主页</a>
     </div>
     <div class="objects">
-        <img class="object_rocket" src="/images/404/rocket.svg" width="40px">
+        <img class="object_rocket" src="${ctx}/images/404/rocket.svg" width="40px">
         <div class="earth-moon">
             <!-- <img class="object_earth" src="./images/" width="100px"> -->
-            <img class="object_moon" src="/images/404/moon.svg" width="80px">
+            <img class="object_moon" src="${ctx}/images/404/moon.svg" width="80px">
         </div>
         <div class="box_astronaut">
-            <img class="object_astronaut" src="/images/404/astronaut.svg" width="140px">
+            <img class="object_astronaut" src="${ctx}/images/404/astronaut.svg" width="140px">
         </div>
     </div>
     <div class="glowing_stars">
@@ -182,7 +182,7 @@
     }
 
     .bg-purple {
-        background: url("/images/404/bg_purple.png");
+        background: url("${ctx}/images/404/bg_purple.png");
         background-repeat: repeat-x;
         background-size: cover;
         background-position: left top;
@@ -324,6 +324,7 @@
     transition: transform ease-in 99999999999s;
 */
     }
+
     .object_astronaut {
         animation: rotate-astronaut 200s infinite linear both alternate;
     }

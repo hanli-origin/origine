@@ -20,8 +20,8 @@ mybatis-plus:
 spring:
   # 数据库配置(务必根据实际情况修改配置)
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/crm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.52.3:3306/crm?useUnicode=true&characterEncoding=utf8&serverTimezone=Hongkong
     username: root
     password: "00000000"
     # 设置连接池为Druid

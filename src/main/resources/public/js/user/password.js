@@ -1,4 +1,4 @@
-layui.use(['form','jquery','jquery_cookie'], function () {
+layui.use(['form', 'jquery', 'jquery_cookie'], function () {
     var form = layui.form,
         layer = layui.layer,
         $ = layui.jquery,
@@ -11,30 +11,30 @@ layui.use(['form','jquery','jquery_cookie'], function () {
         //加载
         index = layer.load(1);
         $.ajax({
-            type:"post",
-            url:ctx+"/user/updatePassword",
-            data:{
-                oldPassword:data.old_password,
-                newPassword:data.new_password,
-                confirmPassword:data.again_password
+            type: "post",
+            url: ctx + "/user/updatePassword",
+            data: {
+                originPwd: data.old_password,
+                newPwd: data.new_password,
+                repeatPwd: data.again_password
             },
-            dataType:"json",
-            success:function (data) {
+            dataType: "json",
+            success: function (data) {
                 layer.close(index);
-                if(data.code == 200){
-                    layer.msg("修改成功，系统即将退出。",{
+                if (data.code == 200) {
+                    layer.msg("修改成功，系统即将退出。", {
                         icon: 1,
                         time: 2000, //2秒关闭（如果不配置，默认是3秒）
-                        shade : [0.6 , '#000' , true],
-                    },function () {
-                        $.removeCookie("userId",{path:"/"})
-                        $.removeCookie("userName",{path:"/"})
-                        $.removeCookie("trueName",{path:"/"})
+                        shade: [0.6, '#000', true],
+                    }, function () {
+                        $.removeCookie("userID", {domain: "localhost", path: "/crm"})
+                        $.removeCookie("userName", {domain: "localhost", path: "/crm"})
+                        $.removeCookie("trueName", {domain: "localhost", path: "/crm"})
                         setTimeout(function () {
-                            window.parent.location.href = ctx + "/";
+                            window.parent.location.href = ctx + "/index";
                         },);
                     })
-                }else {
+                } else {
                     layer.msg(data.msg);
                 }
             }

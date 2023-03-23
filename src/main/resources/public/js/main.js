@@ -1,4 +1,4 @@
-layui.use(['element', 'layer', 'layuimini','jquery','jquery_cookie'], function () {
+layui.use(['element', 'layer', 'layuimini', 'jquery', 'jquery_cookie'], function () {
     var $ = layui.jquery,
         layer = layui.layer,
         $ = layui.jquery_cookie($);
@@ -8,11 +8,11 @@ layui.use(['element', 'layer', 'layuimini','jquery','jquery_cookie'], function (
     layuimini.initTab();
 
     $(".login-out").click(function () {
-        layer.confirm('是否登出当前用户?', {icon: 3, title:'提示'}, function(index){
-            $.removeCookie("userId",{path:"/"})
-            $.removeCookie("userName",{path:"/"})
-            $.removeCookie("trueName",{path:"/"})
-            window.parent.location.href = ctx + "/";
+        layer.confirm('是否登出当前用户?', {icon: 3, title: '提示'}, function (index) {
+            $.removeCookie("userID", {domain: "localhost", path: "/crm"})
+            $.removeCookie("userName", {domain: "localhost", path: "/crm"})
+            $.removeCookie("trueName", {domain: "localhost", path: "/crm"})
+            window.parent.location.href = ctx + "/index";
             layer.close(index);
         });
 
