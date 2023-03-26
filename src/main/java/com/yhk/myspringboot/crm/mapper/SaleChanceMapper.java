@@ -1,7 +1,7 @@
 package com.yhk.myspringboot.crm.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yhk.myspringboot.crm.entity.User;
+import com.yhk.myspringboot.crm.entity.SaleChance;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.yhk.myspringboot.crm.entity.User;
  * </p>
  *
  * @author yhk
- * @since 2023-03-05
+ * @since 2023-03-26
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface SaleChanceMapper extends BaseMapper<SaleChance> {
 
 }

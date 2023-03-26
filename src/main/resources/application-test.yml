@@ -10,6 +10,12 @@ swagger:
 
 #mybatis-plus配置
 mybatis-plus:
+  configuration:
+    # 开启驼峰命名转换
+    map-underscore-to-camel-case: true
+    # 分页插件
+    plugins:
+      - com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor
   mapper-locations: classpath:/mappers/*Mapper.xml
   global-config:
     db-config:

@@ -1,11 +1,5 @@
 package com.yhk.myspringboot.crm.generator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -14,6 +8,11 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 // 执行 main 方法控制台输入表名回车自动生成对应项目目录中
 public class CodeGenerator {
@@ -53,7 +52,7 @@ public class CodeGenerator {
         // 数据库配置
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig
-            .setUrl("jdbc:mysql://192.168.52.3:3306/crm?useUnicode=true&useSSL=false&characterEncoding" + "=utf8");
+                .setUrl("jdbc:mysql://192.168.52.3:3306/crm?useUnicode=true&useSSL=false&characterEncoding" + "=utf8");
         dataSourceConfig.setDriverName("com.mysql.jdbc.Driver");
         dataSourceConfig.setUsername("root");
         dataSourceConfig.setPassword("00000000");
@@ -63,7 +62,7 @@ public class CodeGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.yhk.myspringboot.crm");
         pc.setController("controller");
-        pc.setEntity("pojo");
+        pc.setEntity("entity");
         pc.setService("service");
         pc.setMapper("mapper");
         generator.setPackageInfo(pc);
@@ -84,7 +83,7 @@ public class CodeGenerator {
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                 return projectPath + "/src/main/resources/mappers/" + tableInfo.getEntityName() + "Mapper"
-                    + StringPool.DOT_XML;
+                        + StringPool.DOT_XML;
             }
         });
         cfg.setFileOutConfigList(focList);

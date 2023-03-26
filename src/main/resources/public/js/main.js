@@ -15,8 +15,6 @@ layui.use(['element', 'layer', 'layuimini', 'jquery', 'jquery_cookie'], function
             window.parent.location.href = ctx + "/index";
             layer.close(index);
         });
-
-
     })
 
 

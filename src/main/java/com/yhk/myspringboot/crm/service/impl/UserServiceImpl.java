@@ -2,9 +2,9 @@ package com.yhk.myspringboot.crm.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yhk.myspringboot.crm.entity.User;
+import com.yhk.myspringboot.crm.entity.UserModel;
 import com.yhk.myspringboot.crm.mapper.UserMapper;
-import com.yhk.myspringboot.crm.pojo.User;
-import com.yhk.myspringboot.crm.pojo.UserModel;
 import com.yhk.myspringboot.crm.service.IUserService;
 import com.yhk.myspringboot.crm.utils.AssertUtil;
 import com.yhk.myspringboot.crm.utils.Md5Util;

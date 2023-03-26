@@ -1,20 +1,19 @@
 package com.yhk.myspringboot.crm.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.yhk.myspringboot.base.BaseController;
+import com.yhk.myspringboot.base.ResultInfo;
+import com.yhk.myspringboot.crm.entity.User;
+import com.yhk.myspringboot.crm.entity.UserModel;
+import com.yhk.myspringboot.crm.exceptions.ParamsException;
+import com.yhk.myspringboot.crm.service.IUserService;
+import com.yhk.myspringboot.crm.utils.LoginUserUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yhk.myspringboot.base.BaseController;
-import com.yhk.myspringboot.base.ResultInfo;
-import com.yhk.myspringboot.crm.exceptions.ParamsException;
-import com.yhk.myspringboot.crm.pojo.User;
-import com.yhk.myspringboot.crm.pojo.UserModel;
-import com.yhk.myspringboot.crm.service.IUserService;
-import com.yhk.myspringboot.crm.utils.LoginUserUtil;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>

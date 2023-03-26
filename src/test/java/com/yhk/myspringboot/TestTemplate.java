@@ -1,7 +1,7 @@
 package com.yhk.myspringboot;
 
 import com.yhk.myspringboot.base.ResultInfo;
-import com.yhk.myspringboot.crm.pojo.User;
+import com.yhk.myspringboot.crm.entity.User;
 
 /**
  * @ClassName TestTemplate

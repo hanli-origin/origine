@@ -1,8 +1,8 @@
 package com.yhk.myspringboot.crm.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yhk.myspringboot.crm.pojo.User;
-import com.yhk.myspringboot.crm.pojo.UserModel;
+import com.yhk.myspringboot.crm.entity.User;
+import com.yhk.myspringboot.crm.entity.UserModel;
 
 /**
  * <p>

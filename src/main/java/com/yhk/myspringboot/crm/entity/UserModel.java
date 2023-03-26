@@ -1,4 +1,4 @@
-package com.yhk.myspringboot.crm.pojo;
+package com.yhk.myspringboot.crm.entity;
 
 import lombok.Data;
 

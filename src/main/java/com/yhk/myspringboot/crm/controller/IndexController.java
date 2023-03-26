@@ -1,7 +1,7 @@
 package com.yhk.myspringboot.crm.controller;
 
 import com.yhk.myspringboot.base.BaseController;
-import com.yhk.myspringboot.crm.pojo.User;
+import com.yhk.myspringboot.crm.entity.User;
 import com.yhk.myspringboot.crm.service.IUserService;
 import com.yhk.myspringboot.crm.utils.LoginUserUtil;
 import org.springframework.stereotype.Controller;
