@@ -1,0 +1,13 @@
+
+###
+POST {{host}}/crm/sale_chance/list
+Content-Type: application/json
+cookie:userID=%23ATMwADM%23%23ANwUjMyMzNwADM4YTM
+
+{
+  "page": 1,
+  "limit": 10,
+  "customerName": "阿里",
+  "createMan": "admin",
+  "state": 1
+}
