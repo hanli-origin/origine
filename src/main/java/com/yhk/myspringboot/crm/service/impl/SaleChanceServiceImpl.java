@@ -25,10 +25,10 @@ public class SaleChanceServiceImpl extends ServiceImpl<SaleChanceMapper, SaleCha
 
         QueryWrapper<SaleChance> queryWrapper = new QueryWrapper<>();
         // 在QueryWrapper中设置条件
-        queryWrapper.like("customer_name", query.getCustomerName())
-                .and(w -> w.eq("create_man", query.getCreateMan()))
-                .and(w -> w.eq("state", query.getState()))
-                .and(w -> w.eq("is_valid", 1));
+        /*queryWrapper.like("customer_name", null)
+                .and(w -> w.eq("create_man", null))
+                .and(w -> w.eq("state", 1))
+                .and(w -> w.eq("is_valid", 1));*/
         // 构建分页对象
         Page<SaleChance> page = new Page<>(query.getPage(), query.getLimit());
         baseMapper.selectPage(page, queryWrapper);

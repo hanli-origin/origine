@@ -9,8 +9,7 @@ import com.yhk.myspringboot.crm.query.SaleChanceQuery;
 import com.yhk.myspringboot.crm.service.ISaleChanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,11 +30,14 @@ public class SaleChanceController extends BaseController {
     @Autowired
     ISaleChanceService iSaleChanceService;
 
-    @PostMapping("/list")
+    @GetMapping("/list")
     @ResponseBody
-    public ResultInfo<List<SaleChance>> saleChanceList(@RequestBody SaleChanceQuery query) {
+    public ResultInfo<List<SaleChance>> saleChanceList(SaleChanceQuery query) {
+        System.out.println(query.toString());
         Page<SaleChance> scpage = iSaleChanceService.getSaleChanceByCondition(query);
         ResultInfo<List<SaleChance>> result = success("query saleChanceList success", scpage.getRecords());
+        result.setCount(scpage.getTotal());
+        result.setCode(0);
         return result;
     }
 

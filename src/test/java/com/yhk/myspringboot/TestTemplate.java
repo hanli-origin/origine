@@ -19,7 +19,6 @@ public class TestTemplate {
      * @user ADMIN
      */
     public static void main(String[] args) {
-
     }
 
     /**
@@ -32,7 +31,7 @@ public class TestTemplate {
      */
     public ResultInfo<User> test01() {
         ResultInfo<User> resultInfo = new ResultInfo<>();
-        resultInfo.setResult(new User());
+        resultInfo.setData(new User());
         return resultInfo;
     }
 }

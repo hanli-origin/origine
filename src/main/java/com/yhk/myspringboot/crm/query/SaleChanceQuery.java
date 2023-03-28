@@ -40,4 +40,13 @@ public class SaleChanceQuery extends BaseQuery {
     public void setState(Integer state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return "SaleChanceQuery{" +
+                "customerName='" + customerName + '\'' +
+                ", createMan='" + createMan + '\'' +
+                ", state=" + state +
+                '}';
+    }
 }

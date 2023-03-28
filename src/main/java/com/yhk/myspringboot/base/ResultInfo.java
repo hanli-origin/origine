@@ -1,17 +1,17 @@
 package com.yhk.myspringboot.base;
 
-public class ResultInfo <T>{
+public class ResultInfo<T> {
     private Integer code = 200;
     private String msg = "success";
+    private Long count = 0L;
+    private T data;
 
-    private T result;
-
-    public T getResult() {
-        return result;
+    public T getData() {
+        return data;
     }
 
-    public void setResult(T result) {
-        this.result = result;
+    public void setData(T data) {
+        this.data = data;
     }
 
     public Integer getCode() {
@@ -28,5 +28,13 @@ public class ResultInfo <T>{
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
     }
 }
