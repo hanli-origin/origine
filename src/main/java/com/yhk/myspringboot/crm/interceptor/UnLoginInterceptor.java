@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 public class UnLoginInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
-    IUserService iUserService;
+    IUserService IUserService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 从cookie 读取userId 根据userId是否存在判断用户是否登录
         int userId = LoginUserUtil.releaseUserIdFromCookie(request);
-        if (userId == 0 || iUserService.getById(userId) == null) {
+        if (userId == 0 || IUserService.getById(userId) == null) {
             throw new UnLoginException();
         }
         return super.preHandle(request, response, handler);

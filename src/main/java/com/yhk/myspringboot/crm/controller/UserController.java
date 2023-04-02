@@ -27,10 +27,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 public class UserController extends BaseController {
 
-    private final IUserService userService;
+    private final IUserService IUserService;
 
-    public UserController(IUserService userService) {
-        this.userService = userService;
+    public UserController(IUserService IUserService) {
+        this.IUserService = IUserService;
     }
 
     @PostMapping("/login")
@@ -38,7 +38,7 @@ public class UserController extends BaseController {
     public ResultInfo<UserModel> login(@RequestBody User user) {
         ResultInfo<UserModel> resultInfo;
         try {
-            resultInfo = success("登录成功", userService.login(user));
+            resultInfo = success("登录成功", IUserService.login(user));
         } catch (ParamsException p) {
             resultInfo = fail(p.getMsg(), new UserModel(user));
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class UserController extends BaseController {
     public ResultInfo<String> updatePwd(HttpServletRequest request, String originPwd, String newPwd, String repeatPwd) {
         try {
             int userId = LoginUserUtil.releaseUserIdFromCookie(request);
-            userService.updatePassword(userId, originPwd, newPwd, repeatPwd);
+            IUserService.updatePassword(userId, originPwd, newPwd, repeatPwd);
             return success("密码修改成功");
 
         } catch (ParamsException p) {

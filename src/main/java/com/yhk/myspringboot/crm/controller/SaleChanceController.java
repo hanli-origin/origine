@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +38,6 @@ public class SaleChanceController extends BaseController {
     @GetMapping("/list")
     @ResponseBody
     public ResultInfo<List<SaleChance>> saleChanceList(SaleChanceQuery query) {
-        System.out.println(query.toString());
         Page<SaleChance> scpage = iSaleChanceService.getSaleChanceByCondition(query);
         ResultInfo<List<SaleChance>> result = success("query saleChanceList success", scpage.getRecords());
         result.setCount(scpage.getTotal());
@@ -52,8 +52,11 @@ public class SaleChanceController extends BaseController {
     }
 
     @RequestMapping("/addOrUpdateSaleChancePage")
-    public String addOrUpdateSaleChancePage() {
-
+    public String addOrUpdateSaleChancePage(Integer id, HttpServletRequest request) {
+        Optional.ofNullable(id).ifPresent(s -> {
+            SaleChance saleChance = iSaleChanceService.getById(s);
+            request.setAttribute("saleChance", saleChance);
+        });
         return "/saleChance/add_update";
     }
 
@@ -66,14 +69,28 @@ public class SaleChanceController extends BaseController {
         String userName = CookieUtil.getCookieValue(request, "userName");
         saleChance.setCreateMan(userName);
         iSaleChanceService.addSaleChance(saleChance);
-        return success();
+        return success("营销机会添加成功");
     }
 
 
+    @PostMapping("/update")
+    @ResponseBody
     public ResultInfo<SaleChance> update(SaleChance saleChance) {
-
+        if (!Optional.ofNullable(saleChance).isPresent()) {
+            return fail("参数不能为空", 500);
+        }
         iSaleChanceService.updateById(saleChance);
+        return success("营销机会更新成功");
+    }
 
+    @RequestMapping("/delete")
+    @ResponseBody
+    public ResultInfo<SaleChance> delete(Integer[] ids) {
+        if (!Optional.ofNullable(ids).isPresent()) {
+            return fail("参数错误", 500);
+        }
+        iSaleChanceService.deleteSaleChance(Arrays.asList(ids));
         return success();
+
     }
 }

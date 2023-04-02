@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -64,15 +65,31 @@ public class SaleChanceServiceImpl extends ServiceImpl<SaleChanceMapper, SaleCha
         }
 
         checkParam(saleChance);
-        AssertUtil.isTrue(save(saleChance), "添加成功");
+        AssertUtil.isTrue(!save(saleChance), "添加失败");
     }
 
     @Override
     public void updateSaleChance(SaleChance saleChance) {
+        boolean present = Optional.ofNullable(saleChance.getId()).isPresent();
+        AssertUtil.isTrue(!present, "要更新的记录不存在");
+        boolean chance = Optional.ofNullable(getById(saleChance.getId())).isPresent();
+        AssertUtil.isTrue(!chance, "要更新的记录不存在");
+        // 参数校验
         checkParam(saleChance);
-        updateById(saleChance);
+        AssertUtil.isTrue(!updateById(saleChance), "更新失败");
     }
 
+    @Override
+    public void deleteSaleChance(List<Integer> ids) {
+        AssertUtil.isTrue(!Optional.ofNullable(ids).isPresent() || ids.size() == 0, "请选择待删除记录!");
+        AssertUtil.isTrue(!removeByIds(ids), "记录删除失败!");
+    }
+
+    /**
+     * 参数校验
+     *
+     * @param saleChance
+     */
     private void checkParam(SaleChance saleChance) {
         AssertUtil.isTrue(StringUtils.isBlank(saleChance.getCustomerName()), "客户名不能为空");
         AssertUtil.isTrue(StringUtils.isBlank(saleChance.getLinkMan()), "联系人不能为空");

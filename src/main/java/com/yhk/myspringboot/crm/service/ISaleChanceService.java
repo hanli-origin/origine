@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yhk.myspringboot.crm.entity.SaleChance;
 import com.yhk.myspringboot.crm.query.SaleChanceQuery;
 
+import java.util.List;
+
 /**
  * <p>
  * 服务类
@@ -17,7 +19,11 @@ public interface ISaleChanceService extends IService<SaleChance> {
 
     Page<SaleChance> getSaleChanceByCondition(SaleChanceQuery query);
 
-    public void addSaleChance(SaleChance saleChance);
+    void addSaleChance(SaleChance saleChance);
 
-    public void updateSaleChance(SaleChance saleChance);
+    void updateSaleChance(SaleChance saleChance);
+
+    void deleteSaleChance(List<Integer> ids);
+
+
 }

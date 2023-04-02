@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 public class IndexController extends BaseController {
 
     @Resource
-    private IUserService userService;
+    private IUserService IUserService;
 
     // 系统登录页
     @GetMapping("index")
@@ -36,7 +36,7 @@ public class IndexController extends BaseController {
     @GetMapping(value = {"/", "main"})
     public String admin(HttpServletRequest request) {
         int userId = LoginUserUtil.releaseUserIdFromCookie(request);
-        User user = userService.getById(userId);
+        User user = IUserService.getById(userId);
         request.getSession().setAttribute("user", user);
         return "main";
     }
