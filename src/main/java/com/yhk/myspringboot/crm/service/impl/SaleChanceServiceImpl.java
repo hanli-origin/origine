@@ -52,8 +52,6 @@ public class SaleChanceServiceImpl extends ServiceImpl<SaleChanceMapper, SaleCha
     }
 
     public void addSaleChance(SaleChance saleChance) {
-        Optional<SaleChance> so = Optional.ofNullable(saleChance);
-        AssertUtil.isTrue(!so.isPresent(), "参数不能为空");
         saleChance.setIsValid(1);
         saleChance.setCreateDate(LocalDateTime.now());
         if (StringUtils.isBlank(saleChance.getAssignMan())) {
@@ -66,7 +64,7 @@ public class SaleChanceServiceImpl extends ServiceImpl<SaleChanceMapper, SaleCha
         }
 
         checkParam(saleChance);
-        save(saleChance);
+        AssertUtil.isTrue(save(saleChance), "添加成功");
     }
 
     @Override
@@ -77,8 +75,8 @@ public class SaleChanceServiceImpl extends ServiceImpl<SaleChanceMapper, SaleCha
 
     private void checkParam(SaleChance saleChance) {
         AssertUtil.isTrue(StringUtils.isBlank(saleChance.getCustomerName()), "客户名不能为空");
-        AssertUtil.isTrue(StringUtils.isBlank(saleChance.getCreateMan()), "创建人不能为空");
+        AssertUtil.isTrue(StringUtils.isBlank(saleChance.getLinkMan()), "联系人不能为空");
         AssertUtil.isTrue(StringUtils.isBlank(saleChance.getLinkPhone()), "联系人不能为空");
-        AssertUtil.isTrue(PhoneUtil.isMobile(saleChance.getLinkPhone()), "手机号码错误");
+        AssertUtil.isTrue(!PhoneUtil.isMobile(saleChance.getLinkPhone()), "手机号码错误");
     }
 }

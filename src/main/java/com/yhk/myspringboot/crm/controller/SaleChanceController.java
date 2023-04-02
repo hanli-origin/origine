@@ -7,6 +7,7 @@ import com.yhk.myspringboot.base.ResultInfo;
 import com.yhk.myspringboot.crm.entity.SaleChance;
 import com.yhk.myspringboot.crm.query.SaleChanceQuery;
 import com.yhk.myspringboot.crm.service.ISaleChanceService;
+import com.yhk.myspringboot.crm.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <p>
@@ -56,7 +59,12 @@ public class SaleChanceController extends BaseController {
 
     @PostMapping("/save")
     @ResponseBody
-    public ResultInfo<SaleChance> save(SaleChance saleChance) {
+    public ResultInfo<SaleChance> save(SaleChance saleChance, HttpServletRequest request) {
+        if (!Optional.ofNullable(saleChance).isPresent()) {
+            return fail("参数不能为空", 500);
+        }
+        String userName = CookieUtil.getCookieValue(request, "userName");
+        saleChance.setCreateMan(userName);
         iSaleChanceService.addSaleChance(saleChance);
         return success();
     }
