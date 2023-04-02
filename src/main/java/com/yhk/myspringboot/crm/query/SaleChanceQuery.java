@@ -1,6 +1,7 @@
 package com.yhk.myspringboot.crm.query;
 
 import com.yhk.myspringboot.base.BaseQuery;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SaleChanceQuery extends BaseQuery {
 
@@ -43,10 +44,10 @@ public class SaleChanceQuery extends BaseQuery {
 
     @Override
     public String toString() {
-        return "SaleChanceQuery{" +
-                "customerName='" + customerName + '\'' +
-                ", createMan='" + createMan + '\'' +
-                ", state=" + state +
-                '}';
+        return new ToStringBuilder(this)
+                .append("customerName", customerName)
+                .append("createMan", createMan)
+                .append("state", state)
+                .toString();
     }
 }

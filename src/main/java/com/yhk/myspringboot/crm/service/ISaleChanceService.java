@@ -16,4 +16,8 @@ import com.yhk.myspringboot.crm.query.SaleChanceQuery;
 public interface ISaleChanceService extends IService<SaleChance> {
 
     Page<SaleChance> getSaleChanceByCondition(SaleChanceQuery query);
+
+    public void addSaleChance(SaleChance saleChance);
+
+    public void updateSaleChance(SaleChance saleChance);
 }

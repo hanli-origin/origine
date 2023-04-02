@@ -10,6 +10,7 @@ import com.yhk.myspringboot.crm.service.ISaleChanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -45,5 +46,26 @@ public class SaleChanceController extends BaseController {
     public String index() {
 
         return "/saleChance/sale_chance";
+    }
+
+    @RequestMapping("/addOrUpdateSaleChancePage")
+    public String addOrUpdateSaleChancePage() {
+
+        return "/saleChance/add_update";
+    }
+
+    @PostMapping("/save")
+    @ResponseBody
+    public ResultInfo<SaleChance> save(SaleChance saleChance) {
+        iSaleChanceService.addSaleChance(saleChance);
+        return success();
+    }
+
+
+    public ResultInfo<SaleChance> update(SaleChance saleChance) {
+
+        iSaleChanceService.updateById(saleChance);
+
+        return success();
     }
 }

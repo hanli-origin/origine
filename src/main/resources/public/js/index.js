@@ -35,7 +35,7 @@ layui.use(['form', 'jquery', 'jquery_cookie'], function () {
                         time: 1500, //1.5秒关闭（如果不配置，默认是3秒）
                         shade: [0.6, '#000', true],
                     }, function () {
-                        var result = data.result;
+                        var result = data.data;
                         $.cookie("userID", result.userID);
                         $.cookie("userName", result.userName);
                         $.cookie("trueName", result.trueName);
