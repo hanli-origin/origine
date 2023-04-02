@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -65,5 +67,12 @@ public class UserController extends BaseController {
     @RequestMapping("/toPasswordPage")
     public String toPasswordPage() {
         return "/user/password";
+    }
+
+
+    @RequestMapping("/queryAllSales")
+    @ResponseBody
+    public List<Map<String, Object>> queryAllSales() {
+        return IUserService.getAllSales();
     }
 }

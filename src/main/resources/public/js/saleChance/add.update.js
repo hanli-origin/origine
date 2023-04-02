@@ -10,9 +10,9 @@ layui.use(['form', 'layer'], function () {
         for (var i = 0; i < res.length; i++) {
             //绑定下拉框显示
             if ($("input[name='man']").val() == res[i].id) {
-                $("#assignMan").append("<option value=\"" + res[i].id + "\"  selected='selected' >" + res[i].assignName + "</option>");
+                $("#assignMan").append("<option value=\"" + res[i].id + "\"  selected='selected' >" + res[i].userName + "</option>");
             } else {
-                $("#assignMan").append("<option value=\"" + res[i].id + "\"   >" + res[i].assignName + "</option>");
+                $("#assignMan").append("<option value=\"" + res[i].id + "\"   >" + res[i].userName + "</option>");
             }
 
         }

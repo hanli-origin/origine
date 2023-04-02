@@ -12,6 +12,8 @@ import com.yhk.myspringboot.crm.utils.UserIDBase64;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -92,5 +94,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         AssertUtil.isTrue(!StringUtils.equals(realPwd, Md5Util.encode(originPwd)), "密码错误，修改失败");
         AssertUtil.isTrue(StringUtils.equals(originPwd, newPwd), "新密码不能与旧密码相同");
         AssertUtil.isTrue(!StringUtils.equals(newPwd, repeatPwd), "新密码要与确认密码相同");
+    }
+
+    @Override
+    public List<Map<String, Object>> getAllSales() {
+        return baseMapper.queryAllSales();
     }
 }
