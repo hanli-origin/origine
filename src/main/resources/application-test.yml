@@ -71,7 +71,8 @@ pagehelper:
 ## 设置 dao 日志打印级别
 logging:
   level:
-    top:
-      upstudy:
-        crm:
-          mapper: debug
+    com:
+      yhk:
+        myspringboot:
+          crm:
+            mapper: debug

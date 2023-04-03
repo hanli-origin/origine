@@ -1,7 +1,6 @@
 package com.yhk.myspringboot.crm.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yhk.myspringboot.crm.entity.SaleChance;
@@ -32,16 +31,18 @@ public class SaleChanceServiceImpl extends ServiceImpl<SaleChanceMapper, SaleCha
 
     @Override
     public Page<SaleChance> getSaleChanceByCondition(SaleChanceQuery query) {
-
-        QueryWrapper<SaleChance> queryWrapper = new QueryWrapper<>();
         // 在QueryWrapper中设置条件
         LambdaQueryWrapper<SaleChance> lambdaWrapper = new LambdaQueryWrapper<>();
-        Optional.ofNullable(query.getCustomerName()).ifPresent(name -> lambdaWrapper.like(SaleChance::getCustomerName, name));
-        Optional.ofNullable(query.getCreateMan()).ifPresent(man -> lambdaWrapper.eq(SaleChance::getCreateMan, man));
+        if (StringUtils.isNotBlank(query.getCustomerName())) {
+            lambdaWrapper.like(SaleChance::getCustomerName, query.getCustomerName());
+        }
+        if (StringUtils.isNotBlank(query.getCreateMan())) {
+            lambdaWrapper.eq(SaleChance::getCreateMan, query.getCreateMan());
+        }
         Optional.ofNullable(query.getState()).ifPresent(state -> lambdaWrapper.eq(SaleChance::getState, state));
         // 构建分页对象
         Page<SaleChance> page = new Page<>(query.getPage(), query.getLimit());
-        baseMapper.selectPage(page, queryWrapper);
+        baseMapper.selectPage(page, lambdaWrapper);
         return page;
     }
 
