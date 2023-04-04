@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yhk.myspringboot.base.BaseController;
 import com.yhk.myspringboot.base.ResultInfo;
 import com.yhk.myspringboot.crm.entity.SaleChance;
+import com.yhk.myspringboot.crm.enums.StateStatus;
 import com.yhk.myspringboot.crm.query.SaleChanceQuery;
 import com.yhk.myspringboot.crm.service.ISaleChanceService;
 import com.yhk.myspringboot.crm.utils.CookieUtil;
+import com.yhk.myspringboot.crm.utils.LoginUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +39,12 @@ public class SaleChanceController extends BaseController {
 
     @GetMapping("/list")
     @ResponseBody
-    public ResultInfo<List<SaleChance>> saleChanceList(SaleChanceQuery query) {
+    public ResultInfo<List<SaleChance>> saleChanceList(SaleChanceQuery query, Integer flag, HttpServletRequest request) {
+        // flag =1 查开发计划 否则查营销机会
+        if (flag != null && flag == 1) {
+            query.setState(StateStatus.STATED.getType());
+            query.setAssignMan(LoginUserUtil.releaseUserIdFromCookie(request));
+        }
         Page<SaleChance> scpage = iSaleChanceService.getSaleChanceByCondition(query);
         ResultInfo<List<SaleChance>> result = success("query saleChanceList success", scpage.getRecords());
         result.setCount(scpage.getTotal());

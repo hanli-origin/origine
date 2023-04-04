@@ -59,7 +59,7 @@
                         <dd>
                             <a href="javascript:;" class="layui-menu-tips" data-type="tabAdd" data-tab-mpi="m-p-i-2"
                                data-tab="cus_dev_plan/index" target="_self"><i class="fa fa-ellipsis-h"></i><span
-                                        class="layui-left-nav"> 客户开发计划</span></a>
+                                        class="layui-left-nav"> </span></a>
                         </dd>
 
                     </dl>
@@ -75,7 +75,7 @@
                                data-tab="customer/index" target="_self"><i class="fa fa-exchange"></i><span
                                         class="layui-left-nav"> 客户信息管理</span></a>
                         </dd>
-
+                        客户开发计划
                         <dd>
                             <a href="javascript:;" class="layui-menu-tips" data-type="tabAdd" data-tab-mpi="m-p-i-4"
                                data-tab="customer_loss/index" target="_self"><i class="fa fa-user-times"></i><span

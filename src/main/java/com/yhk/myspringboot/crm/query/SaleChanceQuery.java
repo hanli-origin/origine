@@ -18,6 +18,9 @@ public class SaleChanceQuery extends BaseQuery {
      */
     private Integer state;
 
+    private Integer devResult;
+    private Integer assignMan;
+
     public String getCustomerName() {
         return customerName;
     }
@@ -42,12 +45,30 @@ public class SaleChanceQuery extends BaseQuery {
         this.state = state;
     }
 
+    public Integer getDevResult() {
+        return devResult;
+    }
+
+    public void setDevResult(Integer devResult) {
+        this.devResult = devResult;
+    }
+
+    public Integer getAssignMan() {
+        return assignMan;
+    }
+
+    public void setAssignMan(Integer assignMan) {
+        this.assignMan = assignMan;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("customerName", customerName)
                 .append("createMan", createMan)
                 .append("state", state)
+                .append("devResult", devResult)
+                .append("assignMan", assignMan)
                 .toString();
     }
 }
