@@ -41,9 +41,8 @@ public class SaleChanceServiceImpl extends ServiceImpl<SaleChanceMapper, SaleCha
         }
         Optional.ofNullable(query.getState()).ifPresent(state -> lambdaWrapper.eq(SaleChance::getState, state));
         Optional.ofNullable(query.getDevResult()).ifPresent(devResult -> lambdaWrapper.eq(SaleChance::getDevResult, query.getDevResult()));
-        if (StringUtils.isNotBlank(query.getAssignMan())) {
-            lambdaWrapper.eq(SaleChance::getDevResult, query.getDevResult());
-        }
+        Optional.ofNullable(query.getAssignMan()).ifPresent(devResult -> lambdaWrapper.eq(SaleChance::getAssignMan, query.getAssignMan()));
+
         // 构建分页对象
         Page<SaleChance> page = new Page<>(query.getPage(), query.getLimit());
         baseMapper.selectPage(page, lambdaWrapper);
