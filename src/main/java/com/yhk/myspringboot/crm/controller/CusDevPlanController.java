@@ -61,8 +61,22 @@ public class CusDevPlanController extends BaseController {
     }
 
     @RequestMapping("/addOrUpdateCusDevPlanPage")
-    public String addOrUpdateCusDevPlanPage(Integer sid, HttpServletRequest request) {
+    public String addOrUpdateCusDevPlanPage(Integer sid, Integer id, HttpServletRequest request) {
         request.setAttribute("sid", sid);
+        if (id != null) {
+            CusDevPlan cusDevPlan = iCusDevPlanService.getById(id);
+            request.setAttribute("cusDevPlan", cusDevPlan);
+        }
         return "/cusDevPlan/add_update";
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public ResultInfo update(CusDevPlan cusDevPlan) {
+        if (!Optional.ofNullable(cusDevPlan).isPresent()) {
+            return fail("参数错误", 500);
+        }
+        iCusDevPlanService.updateCusDevPlan(cusDevPlan);
+        return success("更新成功");
     }
 }

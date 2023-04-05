@@ -35,10 +35,19 @@ public class CusDevPlanServiceImpl extends ServiceImpl<CusDevPlanMapper, CusDevP
         this.save(cusDevPlan);
     }
 
+    @Override
+    public void updateCusDevPlan(CusDevPlan cusDevPlan) {
+        AssertUtil.isTrue(cusDevPlan.getId() == null || getById(cusDevPlan.getId()) == null, "参数错误");
+        checkParams(cusDevPlan);
+        cusDevPlan.setUpdateDate(LocalDateTime.now());
+        this.updateById(cusDevPlan);
+    }
+
     private void checkParams(CusDevPlan cusDevPlan) {
         Integer sid = cusDevPlan.getSaleChanceId();
         AssertUtil.isTrue(sid == null || iSaleChanceService.getById(sid) == null, "数据异常");
         AssertUtil.isTrue(StringUtils.isBlank(cusDevPlan.getPlanItem()), "计划项内容不能为空");
         AssertUtil.isTrue(cusDevPlan.getPlanDate() == null, "计划日期不能为空");
     }
+
 }

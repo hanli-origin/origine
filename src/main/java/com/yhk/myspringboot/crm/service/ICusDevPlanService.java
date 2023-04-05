@@ -14,4 +14,6 @@ import com.yhk.myspringboot.crm.entity.CusDevPlan;
 public interface ICusDevPlanService extends IService<CusDevPlan> {
 
     void saveCusDevPlan(CusDevPlan cusDevPlan);
+
+    void updateCusDevPlan(CusDevPlan cusDevPlan);
 }

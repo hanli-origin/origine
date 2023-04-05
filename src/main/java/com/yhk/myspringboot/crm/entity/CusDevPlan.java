@@ -10,8 +10,8 @@ import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -49,7 +49,7 @@ public class CusDevPlan implements Serializable {
      * 计划日期
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate planDate;
+    private Date planDate;
 
     /**
      * 执行效果
