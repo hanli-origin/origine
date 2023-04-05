@@ -59,7 +59,7 @@
                         <dd>
                             <a href="javascript:;" class="layui-menu-tips" data-type="tabAdd" data-tab-mpi="m-p-i-2"
                                data-tab="cus_dev_plan/index" target="_self"><i class="fa fa-ellipsis-h"></i><span
-                                        class="layui-left-nav"> </span></a>
+                                        class="layui-left-nav">客户开发计划</span></a>
                         </dd>
 
                     </dl>

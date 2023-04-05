@@ -7,8 +7,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -17,13 +19,13 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author yhk
- * @since 2023-03-26
+ * @since 2023-04-04
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("t_sale_chance")
-public class SaleChance implements Serializable {
+@TableName("t_cus_dev_plan")
+public class CusDevPlan implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,70 +36,25 @@ public class SaleChance implements Serializable {
     private Integer id;
 
     /**
-     * 机会来源
+     * 营销机会id
      */
-    private String chanceSource;
+    private Integer saleChanceId;
 
     /**
-     * 客户名称
+     * 计划内容
      */
-    private String customerName;
+    private String planItem;
 
     /**
-     * 成功几率
+     * 计划日期
      */
-    private Integer successPossibility;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate planDate;
 
     /**
-     * 概要
+     * 执行效果
      */
-    private String overview;
-
-    /**
-     * 联系人
-     */
-    private String linkMan;
-
-    /**
-     * 手机号
-     */
-    private String linkPhone;
-
-    /**
-     * 描述
-     */
-    private String description;
-
-    /**
-     * 创建人
-     */
-    private String createMan;
-
-    /**
-     * 分配人
-     */
-    private String assignMan;
-
-    /**
-     * 分配时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime assignTime;
-
-    /**
-     * 分配状态
-     */
-    private Integer state;
-
-    /**
-     * 开发结果
-     */
-    private Integer devResult;
-
-    /**
-     * 有效状态
-     */
-    private Integer isValid;
+    private String exeAffect;
 
     /**
      * 创建时间
@@ -110,6 +67,11 @@ public class SaleChance implements Serializable {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime updateDate;
+
+    /**
+     * 有效状态
+     */
+    private Integer isValid;
 
 
 }
