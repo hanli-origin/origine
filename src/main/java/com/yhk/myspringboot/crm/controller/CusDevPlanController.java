@@ -79,4 +79,11 @@ public class CusDevPlanController extends BaseController {
         iCusDevPlanService.updateCusDevPlan(cusDevPlan);
         return success("更新成功");
     }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public ResultInfo delete(Integer id) {
+        iCusDevPlanService.removeById(id);
+        return success();
+    }
 }
