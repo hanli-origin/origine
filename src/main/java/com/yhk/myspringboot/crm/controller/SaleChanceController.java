@@ -100,4 +100,11 @@ public class SaleChanceController extends BaseController {
         return success();
 
     }
+
+    @RequestMapping("/updateSaleChanceDevResult")
+    @ResponseBody
+    public ResultInfo updateSaleChanceDevResult(SaleChance saleChance) {
+        iSaleChanceService.updateById(saleChance);
+        return success();
+    }
 }
