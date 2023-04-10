@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <#include "../common.ftl">
+    <#include "/common.ftl">
 
 </head>
 <body class="childrenBody">
@@ -11,14 +11,16 @@
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
             <input type="text" class="layui-input userName"
-                   lay-verify="required" name="userName" id="userName"  value="${(user.userName)!}" placeholder="请输入用户名">
+                   lay-verify="required" name="userName" id="userName" value="${(user.userName)!}"
+                   placeholder="请输入用户名">
         </div>
     </div>
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">真实姓名</label>
         <div class="layui-input-block">
             <input type="text" class="layui-input userName"
-                   lay-verify="required" name="trueName" id="trueName" value="${(user.trueName)!}" placeholder="请输入真实姓名">
+                   lay-verify="required" name="trueName" id="trueName" value="${(user.trueName)!}"
+                   placeholder="请输入真实姓名">
         </div>
     </div>
     <div class="layui-form-item layui-row layui-col-xs12">
@@ -42,7 +44,7 @@
     <div class="magb15 layui-col-md4 layui-col-xs12">
         <label class="layui-form-label">角色</label>
         <div class="layui-input-block">
-            <select name="roleIds"  xm-select="selectId">
+            <select name="roleIds" xm-select="selectId">
             </select>
         </div>
     </div>

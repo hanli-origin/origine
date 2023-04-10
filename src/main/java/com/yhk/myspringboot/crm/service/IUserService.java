@@ -1,8 +1,10 @@
 package com.yhk.myspringboot.crm.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yhk.myspringboot.crm.entity.User;
 import com.yhk.myspringboot.crm.entity.UserModel;
+import com.yhk.myspringboot.crm.query.UserQuery;
 
 import java.util.List;
 import java.util.Map;
@@ -23,4 +25,8 @@ public interface IUserService extends IService<User> {
     void updatePassword(int userId, String originPwd, String newPwd, String repeatPwd);
 
     List<Map<String, Object>> getAllSales();
+
+    Page<User> getUsers(UserQuery query);
+
+    void addUser(User user);
 }

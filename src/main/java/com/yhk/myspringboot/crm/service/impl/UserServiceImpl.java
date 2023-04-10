@@ -1,17 +1,22 @@
 package com.yhk.myspringboot.crm.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yhk.myspringboot.crm.entity.User;
 import com.yhk.myspringboot.crm.entity.UserModel;
 import com.yhk.myspringboot.crm.mapper.UserMapper;
+import com.yhk.myspringboot.crm.query.UserQuery;
 import com.yhk.myspringboot.crm.service.IUserService;
 import com.yhk.myspringboot.crm.utils.AssertUtil;
 import com.yhk.myspringboot.crm.utils.Md5Util;
+import com.yhk.myspringboot.crm.utils.PhoneUtil;
 import com.yhk.myspringboot.crm.utils.UserIDBase64;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -99,5 +104,45 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public List<Map<String, Object>> getAllSales() {
         return baseMapper.queryAllSales();
+    }
+
+    public Page<User> getUsers(UserQuery query) {
+        // 在QueryWrapper中设置条件
+        LambdaQueryWrapper<User> lambdaWrapper = new LambdaQueryWrapper<>();
+        if (StringUtils.isNotBlank(query.getUserName())) {
+            lambdaWrapper.like(User::getUserName, query.getUserName());
+        }
+        if (StringUtils.isNotBlank(query.getEmail())) {
+            lambdaWrapper.like(User::getEmail, query.getEmail());
+        }
+        if (StringUtils.isNotBlank(query.getPhone())) {
+            lambdaWrapper.like(User::getPhone, query.getPhone());
+        }
+
+        // 构建分页对象
+        Page<User> page = new Page<>(query.getPage(), query.getLimit());
+        baseMapper.selectPage(page, lambdaWrapper);
+        return page;
+    }
+
+
+    public void addUser(User user) {
+        // 参数校验
+        checkUser(user);
+        // 设置默认值
+        user.setIsValid(1);
+        user.setCreateDate(LocalDateTime.now());
+        user.setUpdateDate(LocalDateTime.now());
+        // 设置默认密码
+        user.setUserPassword(Md5Util.encode("123456"));
+        this.save(user);
+    }
+
+    private void checkUser(User user) {
+        AssertUtil.isTrue(StringUtils.isBlank(user.getUserName()), "用户名不能为空");
+        AssertUtil.isTrue(getUserByName(user) != null, "用户名已被占用");
+        AssertUtil.isTrue(StringUtils.isBlank(user.getEmail()), "email不能为空");
+        AssertUtil.isTrue(StringUtils.isBlank(user.getPhone()), "手机号不能为空");
+        AssertUtil.isTrue(!PhoneUtil.isMobile(user.getPhone()), "手机号格式错误");
     }
 }
